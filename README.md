@@ -1,7 +1,7 @@
-Crackbook Revival
+Crackbook Revival Randomized
 =================
 
-Crackbook Revival is a fork of the original Crackbook by Gintautas Miliauskas,
+Crackbook Revival Randomized is a fork of the fork of the original Crackbook by Gintautas Miliauskas,
 hosted at http://github.com/gintas/crackbook
 
 Installation
