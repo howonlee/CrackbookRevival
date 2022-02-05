@@ -1,5 +1,5 @@
 var BODY_POLL_MS = 30;
-var DIMMER_DIV_ID = '_crackbook_dimmer_';
+var DIMMER_DIV_ID = '_crackbook_rand_dimmer_';
 var DIMMER_TEXT = "Wait %d seconds for the content to appear.";
 var DIMMER_SWITCH_TEXT = "The timer restarts if you switch away from this tab.";
 

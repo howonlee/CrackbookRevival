@@ -1,7 +1,7 @@
 {
-  "name": "Crackbook Revival",
-  "short_name": "Crackbook-RV",
-  "version": "1.5.1",
+  "name": "Crackbook Revival Randomized",
+  "short_name": "Crackbook-RV-Rand",
+  "version": "1.0.0",
   "manifest_version": 2,
   "description": "Limit junk sites in your daily infodiet.",
   "icons": {
@@ -9,7 +9,7 @@
   },
   "browser_action": {
     "default_icon": "images/carrot-19px.png",
-    "default_title": "Crackbook Revival",
+    "default_title": "Crackbook Revival Randomized",
     "default_popup": "popup.html"
   },
   "background": {

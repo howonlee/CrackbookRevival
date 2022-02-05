@@ -126,6 +126,7 @@ function bindControlHandlers() {
 function showSettings() {
   // Threshold & delay
   document.getElementById("dimmerThreshold").value = getLocal('dimmerThreshold');
+  document.getElementById("dimmerPercent").value = getLocal('dimmerPercent');
   document.getElementById("dimmerDelay").value = getLocal('dimmerDelay').toFixed(2);
   document.getElementById("dimmerDelayIncrement").value = getLocal('dimmerDelayIncrement').toFixed(2);
   document.getElementById("reset_daily_flag").checked = getLocal('reset_daily_flag');
@@ -169,6 +170,11 @@ function saveSettings() {
     dimmerThreshold = getLocal('dimmerThreshold');
   }
 
+  var dimmerPercent = parseInt(document.getElementById("dimmerPercent").value, 10);
+  if (isNaN(dimmerPercent) || dimmerPercent < 0) {
+    dimmerPercent = getLocal('dimmerPercent');
+  }
+
   var dimmerDelay = parseFloat(document.getElementById("dimmerDelay").value);
   if (isNaN(dimmerDelay) || dimmerDelay < 0) {
     dimmerDelay = getLocal('dimmerDelay');
@@ -201,6 +207,7 @@ function saveSettings() {
 
   // Write settings to storage.
   setLocal('dimmerThreshold', dimmerThreshold);
+  setLocal('dimmerPercent', dimmerPercent);
   setLocal('dimmerDelay', dimmerDelay);
   setLocal('dimmerDelayIncrement', dimmerDelayIncrement);
   setLocal('reset_daily_flag', reset_daily_flag);

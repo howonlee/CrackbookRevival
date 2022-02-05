@@ -73,7 +73,9 @@ function extensionActive() {
 }
 
 function shouldDimPage() {
-  return getTodaysHits() >= getLocal('dimmerThreshold');
+  var hitThresh = getTodaysHits() >= getLocal('dimmerThreshold');
+  var percent = (Math.random() * 100) < getLocal('dimmerPercent');
+  return hitThread && percent;
 }
 
 function toQueryString(obj) {
