@@ -42,7 +42,7 @@ var_defaults = {
   junkDomains: '[]',
   checkActiveTab: 'true',
   dimmerThreshold: '0',
-  dimmerPercent: '16',
+  dimmerPercent: '30',
   dimmerDelay: '3.0',
   dimmerDelayIncrement: '0.05',
   redirectProbability: '2',
