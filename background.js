@@ -74,8 +74,10 @@ function extensionActive() {
 
 function shouldDimPage() {
   var hitThresh = getTodaysHits() >= getLocal('dimmerThreshold');
-  var randVal = (Math.random() * 100)
-  var percent = randVal < getLocal('dimmerPercent');
+  var hrefVal = window.location.href;
+  // stupid hash
+  var winHash = hrefVal.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0) % 100;
+  var percent = winHash < getLocal('dimmerPercent');
   return hitThresh && percent;
 }
 
