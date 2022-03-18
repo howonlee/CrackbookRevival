@@ -74,11 +74,15 @@ function extensionActive() {
 
 function shouldDimPage() {
   var hitThresh = getTodaysHits() >= getLocal('dimmerThreshold');
-  var hrefVal = window.location.href;
-  // stupid hash
-  var winHash = hrefVal.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0) % 100;
-  var percent = winHash < getLocal('dimmerPercent');
-  return hitThresh && percent;
+  return chrome.tabs.getSelected(null, function (tab) {
+    var hrefVal = tab.url;
+    // stupid hash
+    console.log(hrefVal);
+    var winHash = Math.abs(hrefVal.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)) % 100;
+    console.log(winHash);
+    var percent = winHash < getLocal('dimmerPercent');
+    return hitThresh && percent;
+  });
 }
 
 function toQueryString(obj) {
