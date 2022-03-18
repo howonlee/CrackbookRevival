@@ -72,17 +72,15 @@ function extensionActive() {
   }
 }
 
-function shouldDimPage() {
+function shouldDimPage(tab) {
   var hitThresh = getTodaysHits() >= getLocal('dimmerThreshold');
-  return chrome.tabs.getSelected(null, function (tab) {
-    var hrefVal = tab.url;
-    // stupid hash
-    console.log(hrefVal);
-    var winHash = Math.abs(hrefVal.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)) % 100;
-    console.log(winHash);
-    var percent = winHash < getLocal('dimmerPercent');
-    return hitThresh && percent;
-  });
+  var hrefVal = tab.url;
+  // stupid hash
+  var winHash = Math.abs(hrefVal.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)) % 100;
+  var percent = winHash < getLocal('dimmerPercent');
+  var res = hitThresh && percent;
+  console.log(res);
+  return res;
 }
 
 function toQueryString(obj) {
@@ -129,7 +127,7 @@ function handleNewPage(newTab, selectedTab, sendResponse) {
   // Collect data.
   var junkDomain = lookupJunkDomain(newTab.url);
   var active = extensionActive();
-  var shouldDim = shouldDimPage();
+  var shouldDim = shouldDimPage(selectedTab);
   if (!junkDomain && getLocal('checkActiveTab')) {
     junkDomain = lookupJunkDomain(selectedTab.url);
     // TODO: This works for "open in background tab", but not for "open in
@@ -212,7 +210,7 @@ function windowFocusChangedHandler(windowId) {
       if (isNormalUrl(tab.url)) {
         var junkDomain = lookupJunkDomain(tab.url);
         updateIcon(null, !!junkDomain);
-        if (junkDomain && shouldDimPage()) {
+        if (junkDomain && shouldDimPage(tab)) {
           invokeDimmer(tab.id, "resume");
           lastDimmedTabId = tab.id;
         }
